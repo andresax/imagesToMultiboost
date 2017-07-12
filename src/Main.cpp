@@ -75,10 +75,14 @@ int main(int argc, char const *argv[]){
   std::ofstream filetrain("train2017.arff");
 
   filetrain<<"@relation challenge2017"<<std::endl;
-  for (auto c:classColor)  {
-    boost::format fmt("%02d");
-    fmt % c.first;
-    filetrain<<"@attribute a"<<fmt.str()<<" numeric"<<std::endl;
+  int i=0;
+  for (int r = W; r < p.first.rows-W; ++r){
+    for (int c = W; c < p.first.cols-W; ++c){
+      boost::format fmt("%03d");
+      fmt % i;
+      filetrain<<"@attribute a"<<fmt.str()<<" numeric"<<std::endl;
+      i++;
+    }
   }
   filetrain<<"@attribute class {";
   for (auto c:classColor)  {
