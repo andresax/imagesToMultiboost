@@ -6,6 +6,28 @@
 
 #IncludeRegexTransform: 
 
+../include/imageToMultiboost/Configurator.h
+types.hpp
+-
+
+../include/imageToMultiboost/ProgressBar.h
+
+../include/imageToMultiboost/types.hpp
+iostream
+-
+vector
+-
+
+/home/andrea/workspaceC/imagesToMultiboost/src/Configurator.cpp
+sstream
+-
+fstream
+-
+iostream
+-
+Configurator.h
+-
+
 /home/andrea/workspaceC/imagesToMultiboost/src/Main.cpp
 opencv2/highgui.hpp
 -
@@ -25,7 +47,23 @@ vector
 -
 string
 -
+Configurator.h
+-
+ProgressBar.h
+-
 map
+-
+
+/home/andrea/workspaceC/imagesToMultiboost/src/ProgressBar.cpp
+string
+-
+ProgressBar.h
+-
+sstream
+-
+iostream
+-
+fstream
 -
 
 /usr/local/include/opencv/cxcore.h

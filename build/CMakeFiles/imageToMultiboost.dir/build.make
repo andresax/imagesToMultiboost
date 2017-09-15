@@ -57,9 +57,33 @@ include CMakeFiles/imageToMultiboost.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/imageToMultiboost.dir/flags.make
 
+CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o: CMakeFiles/imageToMultiboost.dir/flags.make
+CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o: ../src/ProgressBar.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrea/workspaceC/imagesToMultiboost/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o -c /home/andrea/workspaceC/imagesToMultiboost/src/ProgressBar.cpp
+
+CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrea/workspaceC/imagesToMultiboost/src/ProgressBar.cpp > CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.i
+
+CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrea/workspaceC/imagesToMultiboost/src/ProgressBar.cpp -o CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.s
+
+CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o.requires:
+
+.PHONY : CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o.requires
+
+CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o.provides: CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o.requires
+	$(MAKE) -f CMakeFiles/imageToMultiboost.dir/build.make CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o.provides.build
+.PHONY : CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o.provides
+
+CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o.provides.build: CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o
+
+
 CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o: CMakeFiles/imageToMultiboost.dir/flags.make
 CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o: ../src/Main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrea/workspaceC/imagesToMultiboost/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrea/workspaceC/imagesToMultiboost/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o -c /home/andrea/workspaceC/imagesToMultiboost/src/Main.cpp
 
 CMakeFiles/imageToMultiboost.dir/src/Main.cpp.i: cmake_force
@@ -81,14 +105,42 @@ CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o.provides: CMakeFiles/imageToMult
 CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o.provides.build: CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o
 
 
+CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o: CMakeFiles/imageToMultiboost.dir/flags.make
+CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o: ../src/Configurator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrea/workspaceC/imagesToMultiboost/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o -c /home/andrea/workspaceC/imagesToMultiboost/src/Configurator.cpp
+
+CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrea/workspaceC/imagesToMultiboost/src/Configurator.cpp > CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.i
+
+CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrea/workspaceC/imagesToMultiboost/src/Configurator.cpp -o CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.s
+
+CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o.requires:
+
+.PHONY : CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o.requires
+
+CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o.provides: CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o.requires
+	$(MAKE) -f CMakeFiles/imageToMultiboost.dir/build.make CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o.provides.build
+.PHONY : CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o.provides
+
+CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o.provides.build: CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o
+
+
 # Object files for target imageToMultiboost
 imageToMultiboost_OBJECTS = \
-"CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o"
+"CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o" \
+"CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o" \
+"CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o"
 
 # External object files for target imageToMultiboost
 imageToMultiboost_EXTERNAL_OBJECTS =
 
+imageToMultiboost: CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o
 imageToMultiboost: CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o
+imageToMultiboost: CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o
 imageToMultiboost: CMakeFiles/imageToMultiboost.dir/build.make
 imageToMultiboost: /usr/local/lib/libopencv_cudabgsegm.so.3.2.0
 imageToMultiboost: /usr/local/lib/libopencv_cudaobjdetect.so.3.2.0
@@ -148,7 +200,7 @@ imageToMultiboost: /usr/local/lib/libopencv_imgproc.so.3.2.0
 imageToMultiboost: /usr/local/lib/libopencv_core.so.3.2.0
 imageToMultiboost: /usr/local/lib/libopencv_cudev.so.3.2.0
 imageToMultiboost: CMakeFiles/imageToMultiboost.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andrea/workspaceC/imagesToMultiboost/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable imageToMultiboost"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andrea/workspaceC/imagesToMultiboost/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable imageToMultiboost"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/imageToMultiboost.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -156,7 +208,9 @@ CMakeFiles/imageToMultiboost.dir/build: imageToMultiboost
 
 .PHONY : CMakeFiles/imageToMultiboost.dir/build
 
+CMakeFiles/imageToMultiboost.dir/requires: CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o.requires
 CMakeFiles/imageToMultiboost.dir/requires: CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o.requires
+CMakeFiles/imageToMultiboost.dir/requires: CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o.requires
 
 .PHONY : CMakeFiles/imageToMultiboost.dir/requires
 

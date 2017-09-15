@@ -123,6 +123,33 @@ imageToMultiboost/fast:
 	$(MAKE) -f CMakeFiles/imageToMultiboost.dir/build.make CMakeFiles/imageToMultiboost.dir/build
 .PHONY : imageToMultiboost/fast
 
+src/Configurator.o: src/Configurator.cpp.o
+
+.PHONY : src/Configurator.o
+
+# target to build an object file
+src/Configurator.cpp.o:
+	$(MAKE) -f CMakeFiles/imageToMultiboost.dir/build.make CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o
+.PHONY : src/Configurator.cpp.o
+
+src/Configurator.i: src/Configurator.cpp.i
+
+.PHONY : src/Configurator.i
+
+# target to preprocess a source file
+src/Configurator.cpp.i:
+	$(MAKE) -f CMakeFiles/imageToMultiboost.dir/build.make CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.i
+.PHONY : src/Configurator.cpp.i
+
+src/Configurator.s: src/Configurator.cpp.s
+
+.PHONY : src/Configurator.s
+
+# target to generate assembly for a file
+src/Configurator.cpp.s:
+	$(MAKE) -f CMakeFiles/imageToMultiboost.dir/build.make CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.s
+.PHONY : src/Configurator.cpp.s
+
 src/Main.o: src/Main.cpp.o
 
 .PHONY : src/Main.o
@@ -150,6 +177,33 @@ src/Main.cpp.s:
 	$(MAKE) -f CMakeFiles/imageToMultiboost.dir/build.make CMakeFiles/imageToMultiboost.dir/src/Main.cpp.s
 .PHONY : src/Main.cpp.s
 
+src/ProgressBar.o: src/ProgressBar.cpp.o
+
+.PHONY : src/ProgressBar.o
+
+# target to build an object file
+src/ProgressBar.cpp.o:
+	$(MAKE) -f CMakeFiles/imageToMultiboost.dir/build.make CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o
+.PHONY : src/ProgressBar.cpp.o
+
+src/ProgressBar.i: src/ProgressBar.cpp.i
+
+.PHONY : src/ProgressBar.i
+
+# target to preprocess a source file
+src/ProgressBar.cpp.i:
+	$(MAKE) -f CMakeFiles/imageToMultiboost.dir/build.make CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.i
+.PHONY : src/ProgressBar.cpp.i
+
+src/ProgressBar.s: src/ProgressBar.cpp.s
+
+.PHONY : src/ProgressBar.s
+
+# target to generate assembly for a file
+src/ProgressBar.cpp.s:
+	$(MAKE) -f CMakeFiles/imageToMultiboost.dir/build.make CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.s
+.PHONY : src/ProgressBar.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -159,9 +213,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... imageToMultiboost"
+	@echo "... src/Configurator.o"
+	@echo "... src/Configurator.i"
+	@echo "... src/Configurator.s"
 	@echo "... src/Main.o"
 	@echo "... src/Main.i"
 	@echo "... src/Main.s"
+	@echo "... src/ProgressBar.o"
+	@echo "... src/ProgressBar.i"
+	@echo "... src/ProgressBar.s"
 .PHONY : help
 
 

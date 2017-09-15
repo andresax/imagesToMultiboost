@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/imageToMultiboost.dir/src/ProgressBar.cpp.o"
   "CMakeFiles/imageToMultiboost.dir/src/Main.cpp.o"
+  "CMakeFiles/imageToMultiboost.dir/src/Configurator.cpp.o"
   "imageToMultiboost.pdb"
   "imageToMultiboost"
 )
