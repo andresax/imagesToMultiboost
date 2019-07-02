@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-enum operationMode {TRAIN, TEST, READ_IMG, READ_POST};
+enum operationMode {TRAIN, TEST, READ_IMG, READ_POST,CONVERT};
 
 struct Config{
   int window = 3;
@@ -25,7 +25,7 @@ struct Config{
   void toString(){
     std::cout << "Config: " << std::endl;
     std::cout << "window : "<< window << std::endl;
-    std::cout << "window : "<< numClasses << std::endl;
+    std::cout << "numClasses : "<< numClasses << std::endl;
     std::cout << "operationMode : "<< operation << std::endl;
     std::cout << "firstFrame : "<< firstFrame << std::endl;
     std::cout << "lastFrame : "<< lastFrame << std::endl;

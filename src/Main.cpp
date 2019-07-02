@@ -16,12 +16,14 @@ std::map<int,cv::Scalar> classColor;
 std::map<int,int> colorGray;
 
 void writeHeader(int W, std::ofstream &file);
+void writeHeaderColorwise(int W, std::ofstream &file);
 void writePatch(const cv::Mat &img, int r, int c, int W, std::ofstream &file);
 void writePatchColorwise(const cv::Mat &img, int r, int c, int W, std::ofstream &file);
 int train(Config &conf);
 int test(Config &conf);
 int read(Config &conf);
 int readPosterior(Config &conf);
+int convertImages(Config &conf);
 
 int main(int argc, char const *argv[]){
   /*classColor[0]=cv::Scalar(0,0,0);
@@ -34,12 +36,12 @@ int main(int argc, char const *argv[]){
   classColor[7]=cv::Scalar(0.2, 0.2, 0.9);
   classColor[8]=cv::Scalar(0.3, 0.7, 0.1);
   classColor[9]=cv::Scalar(0.1, 0.1, 0.1);*/
-  classColor[0]=cv::Scalar(1.0,0.0,0.0);
-  classColor[1]=cv::Scalar(0.0,1.0,0.0);
-  classColor[2]=cv::Scalar(0.0,0.0,1.0);
+  // classColor[0]=cv::Scalar(1.0,0.0,0.0);
+  // classColor[1]=cv::Scalar(0.0,1.0,0.0);
+  // classColor[2]=cv::Scalar(0.0,0.0,1.0);
   //classColor[3]=cv::Scalar(1.0,1.0,1.0);
-
-  colorGray[0]=0;
+/*
+  colorGray[0]=13;
   colorGray[1]=1;
   colorGray[2]=2;
   colorGray[3]=3;
@@ -48,7 +50,71 @@ int main(int argc, char const *argv[]){
   colorGray[6]=6;
   colorGray[7]=7;
   colorGray[8]=8;
-  colorGray[9]=9;
+  colorGray[9]=9;*/
+
+
+  //window wall balcony door roof sky shop
+
+
+  // classColor[0]=cv::Scalar(0,0,0);
+  // classColor[1]=cv::Scalar(0,0.8,0);
+  // classColor[2]=cv::Scalar(0.3,0.5,0);
+  // classColor[3]=cv::Scalar(0.7, 0.8, 0.9);
+  // classColor[4]=cv::Scalar(0.5, 0.5, 0);
+  // classColor[5]=cv::Scalar(0, 0.7, 0.7);
+  // classColor[6]=cv::Scalar(0.9, 0, 0);
+  // classColor[7]=cv::Scalar(0.2, 0.2, 0.9);
+  // classColor[8]=cv::Scalar(0.3, 0.7, 0.1);
+  // classColor[9]=cv::Scalar(0.1, 0.1, 0.1);
+/*
+  //roof
+  classColor[0]=cv::Scalar(0.0,0.0,1.0);
+  //wall
+  classColor[1]=cv::Scalar(1.0,1.0,0.0);
+  //door
+  classColor[2]=cv::Scalar(1.0,0.5,0.0);
+  //window
+  classColor[3]=cv::Scalar(1.0,0.0,0.0);
+  //balcony
+  classColor[4]=cv::Scalar(0.5,0.0,1.0);
+  //sky
+  classColor[5]=cv::Scalar(0.5,1.0,1.0);
+  //shop
+  classColor[6]=cv::Scalar(0.0,1.0,0.0);
+
+  colorGray[0]=0;
+  colorGray[1]=1;
+  colorGray[2]=2;
+  colorGray[3]=3;
+  colorGray[4]=4;
+  colorGray[5]=5;
+  colorGray[6]=6;*/
+
+// for (int i = 0; i <= 54; ++i)
+// {
+//   colorGray[i] = i;
+//   classColor[i]=cv::Scalar(static_cast<float>(i)/255.0,static_cast<float>(i)/255.0,static_cast<float>(i)/255.0);
+// }
+
+
+
+  //roof
+  classColor[0]=cv::Scalar(0.0,0.0,1.0);
+  //wall
+  //window
+  classColor[1]=cv::Scalar(1.0,0.0,0.0);
+  //shop
+  classColor[2]=cv::Scalar(0.0,1.0,0.0);
+
+  colorGray[0]=0;
+  colorGray[1]=1;
+  colorGray[2]=2;
+
+
+
+
+
+
 
 
   Configurator c;
@@ -67,6 +133,9 @@ int main(int argc, char const *argv[]){
       break;
     case operationMode::READ_POST:
       readPosterior(conf);
+      break;
+    case operationMode::CONVERT:
+      convertImages(conf);
       break;
     default:
       break;
@@ -91,6 +160,45 @@ void writeHeader(int W, std::ofstream &file){
         i++;
       }
     }
+        boost::format fmt("%04d");
+        fmt % i;
+    file<<"@attribute a"<<fmt.str()<<" numeric"<<std::endl;//r
+    //     i++;
+    //     fmt % i;
+    //     file<<"@attribute a"<<fmt.str()<<" numeric"<<std::endl;//r
+    file<<"@attribute class {";
+
+    for (auto c:classColor)  {
+      if(c.first == classColor.size()-1)
+        //if(c.first == 9)
+        file<<c.first<<"";
+      else
+        file<<c.first<<",";
+    }
+    file<<"}"<<std::endl;
+
+    file<<std::endl<<"@data"<<std::endl;
+
+}
+
+void writeHeaderColorwise(int W, std::ofstream &file){
+    file<<"@relation fountain"<<std::endl;
+    int i=0;
+    for (int rW = - W ; rW <=  W ; ++rW){
+      for (int cW = - W ; cW <=  W; ++cW){
+        boost::format fmt("%04d");
+        fmt % i;
+        file<<"@attribute a"<<fmt.str()<<" numeric"<<std::endl;//R
+        i++;
+        fmt % i;
+        file<<"@attribute a"<<fmt.str()<<" numeric"<<std::endl;//G
+        i++;
+        fmt % i;
+        file<<"@attribute a"<<fmt.str()<<" numeric"<<std::endl;//b
+        i++;
+      }
+    }
+
     file<<"@attribute class {";
 
     for (auto c:classColor)  {
@@ -114,6 +222,8 @@ void writePatch(const cv::Mat &img, int r, int c, int W, std::ofstream &file){
       file<<img.at<cv::Vec3f>(rW,cW).val[2] << ",";
     }
   }
+  file<<r << ",";
+  //file<<c << ",";
 }
 
 void writePatchColorwise(const cv::Mat &img, int r, int c, int W, std::ofstream &file){
@@ -143,17 +253,15 @@ int train(Config &conf){
   std::stringstream formatStr;
   ProgressBar progress;
   formatStr << '%'<<"0"<<conf.digits<<"d";
-
+  std::vector<int> countClass(classColor.size(),0);
 
   std::cout<<"Convert images for multiboost"<<std::endl;
-
   filetrain.open(conf.outputName + ".arff");
-  
-  boost::format fmt(formatStr.str().c_str());
 
+  boost::format fmt(formatStr.str().c_str());
   std::ifstream file,fileSeg;
   std::vector<std::pair<cv::Mat,cv::Mat>> trainSegmimage;
-  
+  cv::Mat imtmp;
   for (auto p : conf.folderNames){
     for (int i = conf.firstFrame; i < conf.lastFrame; ++i){
       
@@ -166,7 +274,6 @@ int train(Config &conf){
       if(file.good() && fileSeg.good()){
         cv::Mat im = cv::imread(simage);
         cv::Mat se = cv::imread(ssegm);
-
         std::cout<<simage<<std::endl;
         std::cout<<ssegm<<std::endl;
         cv::Mat seOK,imOk;
@@ -177,14 +284,12 @@ int train(Config &conf){
       file.close();
       fileSeg.close();
    }
-    
   }
-
 
   writeHeader(W,filetrain);
   for(auto p : trainSegmimage){
     std::cout<<"Processing new image"<<std::endl;
-    int count=0;
+    int count=1;
     /**/
     progress.reset(40,p.first.rows - 2*W);
     /**/
@@ -201,20 +306,11 @@ int train(Config &conf){
               idClass = color.first;
             }
           }
-
           if(found){
-            // std::cout<<p.second.at<cv::Vec3f>(r,c).val[0]<<" ";
-            // std::cout<<p.second.at<cv::Vec3f>(r,c).val[1]<<" ";
-            // std::cout<<p.second.at<cv::Vec3f>(r,c).val[2]<<std::endl;
-            // std::cout<<p.first.at<cv::Vec3f>(r-W,c-W).val[0]<<" ";
-            // std::cout<<p.first.at<cv::Vec3f>(r-W,c-W).val[1]<<" ";
-            // std::cout<<p.first.at<cv::Vec3f>(r-W,c-W).val[2]<<std::endl;
-            // std::cout<<idClass<<std::endl;
-
-            // exit(0);
-            if(count%8==0||idClass==2){
+            if(count%5==0){
               writePatch(p.first,r,c,W,filetrain);
               filetrain<<""<<idClass<<std::endl;
+              countClass[idClass]++;
             }
             count++;
           }
@@ -223,8 +319,9 @@ int train(Config &conf){
       progress.addIteration();
     }
   }
-    
-
+  int i=0;
+  for(auto c:countClass)
+    std::cout<<"Class "<< i++ << " = "<<c<<std::endl;
   std::cout<<"Ended"<<std::endl;
    filetrain.close();
   return 0;
@@ -282,10 +379,7 @@ int test(Config &conf){
     writeHeader(W,filetrain);
     for(auto p : trainSegmimage){
       std::cout<<"Processing new imGW"<<std::endl;
-      int count=0;
-      /**/
       progress.reset(40,p.first.rows - 2*W);
-      /**/
       
       for (int r = W; r < p.first.rows-W; ++r){
         for (int c = W; c < p.first.cols-W; ++c){
@@ -297,23 +391,18 @@ int test(Config &conf){
                 static_cast<int>(p.second.at<cv::Vec3f>(r,c).val[1]) == static_cast<int>(ceil(255.0 * color.second.val[1])) &&
                 static_cast<int>(p.second.at<cv::Vec3f>(r,c).val[0]) == static_cast<int>(ceil(255.0 * color.second.val[2]))){
                 found = true;
-                idClass =color.first;
+                idClass = color.first;
               }
             }
           }
           writePatch(p.first,r,c,W,filetrain);
-          if(found)  {
-            filetrain<<""<<idClass<<std::endl;  
-          }else{
-            filetrain<<""<<classColor.size()<<std::endl;  
-          } 
+          filetrain<<""<<(found?idClass:classColor.size())<<std::endl;  
         }
         progress.addIteration();
-        
       }
     }
     filetrain.close();
-
+    std::cout<< std::endl<<"Written on " << conf.outputName + fmt.str() + ".arff" << std::endl;
   }
 }
 
@@ -344,9 +433,9 @@ int read(Config &conf){
 
             std::istringstream iss(line);
             iss >> id >> classLabel;
-            imageCur.at<cv::Vec3b>(r,c).val[0] = round(classColor[classLabel].val[0]*255.0);
-            imageCur.at<cv::Vec3b>(r,c).val[1] = round(classColor[classLabel].val[1] *255.0);
-            imageCur.at<cv::Vec3b>(r,c).val[2] = round(classColor[classLabel].val[2] *255.0);
+            imageCur.at<cv::Vec3b>(r,c).val[2] = round(classColor[classLabel].val[0] * 255.0);
+            imageCur.at<cv::Vec3b>(r,c).val[1] = round(classColor[classLabel].val[1] * 255.0);
+            imageCur.at<cv::Vec3b>(r,c).val[0] = round(classColor[classLabel].val[2] * 255.0);
             
           }
         }
@@ -417,21 +506,17 @@ int readPosterior(Config &conf){
                 maxValue = id;
                 classLabel = i;
               }
-
-              /*imagesClass[i].at<cv::Vec3f>(r,c).val[0] = id;
-              imagesClass[i].at<cv::Vec3f>(r,c).val[1] = id;
-              imagesClass[i].at<cv::Vec3f>(r,c).val[2] = id;*/
               filesPost[i] << id <<" " << std::endl;
             }
 
-            imageCur.at<cv::Vec3b>(r,c).val[0] = round(classColor[classLabel].val[0] * 255.0);
+            imageCur.at<cv::Vec3b>(r,c).val[0] = round(classColor[classLabel].val[2] * 255.0);
             imageCur.at<cv::Vec3b>(r,c).val[1] = round(classColor[classLabel].val[1] * 255.0);
-            imageCur.at<cv::Vec3b>(r,c).val[2] = round(classColor[classLabel].val[2] * 255.0);
+            imageCur.at<cv::Vec3b>(r,c).val[2] = round(classColor[classLabel].val[0] * 255.0);
             
           }
         }
         std::stringstream ss;
-        ss<<conf.outputName<<fmt.str()<<".png";
+        ss<<conf.outputName<<fmt.str()<<"_rgb.png";
         cv::imwrite(ss.str(),imageCur);
         for (int i = 0; i < classColor.size(); ++i) {
           filesPost[i]<<std::endl;
@@ -448,53 +533,53 @@ int readPosterior(Config &conf){
 
 
 
-// void toGrayImages(){
-//   std::string basepahth = "/home/andrea/Desktop/Datasets/3DRMS-Challenge2017/testing/seg/";
+int convertImages(Config &conf){
+    std::cout<<"convertImages"<<std::endl;
+  std::stringstream formatStr;
+  formatStr << '%'<<"0"<<conf.digits<<"d";
+  for (int cur = conf.firstFrame; cur < conf.lastFrame; ++cur) {
+    boost::format fmt(formatStr.str().c_str());
+    std::stringstream pathOrigFile, pathGrayFile;
+    fmt % cur;
+    pathOrigFile<<conf.pathBase <<fmt.str()<<"_rgb.png";
+    pathGrayFile<<conf.pathBase <<fmt.str()<<".png";
+    cv::Mat image = cv::imread(pathOrigFile.str());
+    // cv::imshow("image",image);
+    // cv::waitKey(0);
+    std::cout<<"Processing image: "<<pathOrigFile.str()<<std::endl;
 
-//   for (int j = 0; j < 2; ++j)
-//   for (int i = 0; i < 123; ++i){
-//       std::stringstream pathOrigFile, pathGrayFile;
-//       boost::format fmt("%04d");
-//       fmt % i;
-//       pathOrigFile<<basepahth<<j<<"-"<<fmt.str()<<"_rgb.png";
-//       pathGrayFile<<basepahth<<j<<"-"<<fmt.str()<<".png";
-//       cv::Mat image = cv::imread(pathOrigFile.str());
-//       // cv::imshow("image",image);
-//       // cv::waitKey(0);
-//       std::cout<<"Processing image: "<<pathOrigFile.str()<<std::endl;
+    cv::Mat imageCur(image.size(),CV_8UC1);
+    int count =0;
+    for (int r = 0; r < image.rows; ++r){
+      for (int c = 0; c < image.cols; ++c){
+        cv::Scalar color( static_cast<float>(image.at<cv::Vec3b>(r,c).val[0]),
+                          static_cast<float>(image.at<cv::Vec3b>(r,c).val[1]),
+                          static_cast<float>(image.at<cv::Vec3b>(r,c).val[2]));
 
-//       cv::Mat imageCur(image.size(),CV_8UC1);
-//       int count =0;
-//       for (int r = 0; r < image.rows; ++r){
-//         for (int c = 0; c < image.cols; ++c){
-//           cv::Scalar color( static_cast<float>(image.at<cv::Vec3b>(r,c).val[0]),
-//                             static_cast<float>(image.at<cv::Vec3b>(r,c).val[1]),
-//                             static_cast<float>(image.at<cv::Vec3b>(r,c).val[2]));
+        // std::cout<<color<<" comparing to: "<<std::flush;
+        int id = 255;
+        for (auto it = classColor.begin(); it != classColor.end(); ++it ){
+        // std::cout<< it->second*255.0<<" "<<std::flush;
+          if (round(it->second.val[0]*255.0) == (int)color.val[2] && 
+              round(it->second.val[1]*255.0) == (int)color.val[1] && 
+              round(it->second.val[2]*255.0) == (int)color.val[0]){
+              id =  it->first;
+              count++;
+              break;
+          }
+        }
+        // std::cout <<id<<std::endl;
 
-//           //std::cout<<color<<" comparing to: "<<std::flush;
-//           int id = 255;
-//           for (auto it = classColor.begin(); it != classColor.end(); ++it ){
-//           //std::cout<< it->second*255.0<<" "<<std::flush;
-//             if (round(it->second.val[0]*255.0) == (int)color.val[0] && 
-//                 round(it->second.val[1]*255.0) == (int)color.val[1] && 
-//                 round(it->second.val[2]*255.0) == (int)color.val[2]){
-//                 id =  it->first;
-//                 count++;
-//                 break;
-//             }
-//           }
-//           //std::cout <<id<<std::endl;
+        if(id ==255){
+          imageCur.at<unsigned char>(r,c) = 255;
+        }else{
+          imageCur.at<unsigned char>(r,c) = colorGray[id];
+        }
+      }
+    }
+    std::cout<<"Num found: "<< count<<std::endl;
+    //exit(0);
 
-//           if(id ==255){
-//             imageCur.at<unsigned char>(r,c) = 255;
-//           }else{
-//             imageCur.at<unsigned char>(r,c) = colorGray[id];
-//           }
-//         }
-//       }
-//       std::cout<<"Num found: "<< count<<std::endl;
-//       //exit(0);
-
-//       cv::imwrite(pathGrayFile.str(),imageCur);
-//   }
-// }
+    cv::imwrite(pathGrayFile.str(),imageCur);
+  }
+}

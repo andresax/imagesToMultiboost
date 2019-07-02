@@ -11,6 +11,7 @@ find_package(Boost REQUIRED COMPONENTS system filesystem)
 find_package(OpenCV REQUIRED)
 
 MESSAGE( STATUS "CMAKE_BUILD_TYPE:      " ${CMAKE_BUILD_TYPE} )
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -frounding-math  ")
 # ----------------------- INCLUDES ----------------------------
 include_directories(  ${OpenCV_INCLUDE_DIRS}
